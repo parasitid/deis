@@ -67,7 +67,7 @@ from docopt import DocoptExit
 import requests
 from termcolor import colored
 
-__version__ = '0.15.1+git'
+__version__ = '1.0.1'
 
 
 locale.setlocale(locale.LC_ALL, '')
@@ -205,8 +205,8 @@ class Settings(dict):
             with open(self._path, 'w') as f:
                 f.write(data)
         except IOError:
-            self._logger.error("Could not write to settings file at '~/.deis/client.json'. \
-Do you have the right file permissions?")
+            logging.getLogger(__name__).error("Could not write to settings file at \
+'~/.deis/client.json' Do you have the right file permissions?")
             sys.exit(1)
         return data
 

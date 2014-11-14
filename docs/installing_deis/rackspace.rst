@@ -40,11 +40,16 @@ Your account ID is displayed in the upper right-hand corner of the cloud control
 API key can be found on the Account Settings page.
 
 
+Generate SSH Key
+----------------
+
+Please refer to :ref:`generate_ssh_key` for generating a new SSH key.
+
+
 Set up your keys
 ----------------
 
-Choose an existing keypair or generate a new one, if desired. Tell supernova about the key pair and
-give it an identifiable name:
+Tell supernova about the key pair and give it an identifiable name:
 
 .. code-block:: console
 
@@ -54,14 +59,7 @@ give it an identifiable name:
 Generate a New Discovery URL
 ----------------------------
 
-To get started with provisioning the nodes, we will need to generate a new Discovery URL.
-Discovery URLs help connect `etcd`_ instances together by storing a list of peer addresses and
-metadata under a unique address. You can generate a new discovery URL for use in your platform by
-running the following from the root of the repository:
-
-.. code-block:: console
-
-    $ make discovery-url
+Please refer to :ref:`generate_discovery_url` for generating a new Discovery URL.
 
 
 Choose number of instances
@@ -74,10 +72,9 @@ By default, the provision script will provision 3 servers. You can override this
     $ DEIS_NUM_INSTANCES=5 ./provision-rackspace-cluster.sh deis-key
 
 Note that for scheduling to work properly, clusters must consist of at least 3 nodes and always have an odd number of members.
-For more information, see [optimal etcd cluster size](https://github.com/coreos/etcd/blob/master/Documentation/optimal-cluster-size.md).
+For more information, see `optimal etcd cluster size`_.
 
 Deis clusters of less than 3 nodes are unsupported.
-
 
 Run the Provision Script
 ------------------------
@@ -92,6 +89,11 @@ of the key pair you just added. Optionally, you can also specify a flavor name, 
     Usage: provision-rackspace-cluster.sh <key pair name> [flavor] [environment]
     $ ./provision-rackspace-cluster.sh deis-key
 
+.. note::
+
+    The provision script will by default provision ``performance1-2`` servers. Choosing a smaller
+    server size is not recommended. Please refer to :ref:`system-requirements` for resource
+    considerations when choosing a server size to run Deis.
 
 Configure DNS
 -------------
@@ -127,6 +129,6 @@ start installing the platform.
 
 .. _`contrib/rackspace`: https://github.com/deis/deis/tree/master/contrib/rackspace
 .. _`CoreOS on Rackspace`: https://coreos.com/docs/running-coreos/cloud-providers/rackspace/
-.. _etcd: https://github.com/coreos/etcd
+.. _`optimal etcd cluster size`: https://github.com/coreos/etcd/blob/master/Documentation/optimal-cluster-size.md
 .. _Rackspace: https://github.com/deis/deis/tree/master/contrib/rackspace#readme
 .. _`contrib/rackspace`: https://github.com/deis/deis/tree/master/contrib/rackspace

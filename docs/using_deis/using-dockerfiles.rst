@@ -29,10 +29,6 @@ In order to deploy Dockerfile applications, they must conform to the following r
 
     Dockerfiles which expose more than one port will hit `issue 1156`_.
 
-.. attention::
-
-    Support for non-HTTP services is coming soon
-
 Create an Application
 ---------------------
 Use ``deis create`` to create an application on the :ref:`controller`.
@@ -128,8 +124,8 @@ Deis also supports scaling other process types as defined in a `Procfile`_.  To 
 2. Include a ``start`` executable that can be called with: ``start <process-type>``
 
 
-.. _`Dockerfile`: http://docs.docker.io/en/latest/use/builder/
-.. _`Docker Image`: http://docs.docker.io/introduction/understanding-docker/
-.. _`CMD instruction`: http://docs.docker.io/reference/builder/#cmd
+.. _`Dockerfile`: https://docs.docker.com/reference/builder/
+.. _`Docker Image`: https://docs.docker.com/introduction/understanding-docker/
+.. _`CMD instruction`:  https://docs.docker.com/reference/builder/#cmd
 .. _`issue 1156`: https://github.com/deis/deis/issues/1156
 .. _`Procfile`: https://devcenter.heroku.com/articles/procfile

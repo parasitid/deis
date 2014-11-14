@@ -3,14 +3,21 @@
 
 .. _install_deis_platform:
 
-Installing the Deis Platform
-============================
+Install the Deis Platform
+=========================
 
-.. important::
+We will use the ``deisctl`` utility to provision the Deis platform
+from a CoreOS host or a workstation that has SSH access to CoreOS.
 
-    Before installing the platform, please see :ref:`install_deisctl` first.
+First check that you have ``deisctl`` installed and the version is correct.
 
-From the computer you installed the Deis Control Utility, we will provision the Deis platform.
+.. code-block:: console
+
+    $ deisctl --version
+    1.0.1
+
+If not, follow instructions to :ref:`install_deisctl`.
+
 Ensure your SSH agent is running and select the private key that corresponds to the SSH key added
 to your CoreOS nodes:
 

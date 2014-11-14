@@ -6,16 +6,13 @@
 DigitalOcean
 ============
 
-In this tutorial, we will show you how to set up your own 3-node cluster on DigitalOcean. This
-guide is also available in DigitalOcean's `Community site`_, so check out their guide as well!
+In this tutorial, we will show you how to set up your own 3-node cluster on DigitalOcean.
 
 Prerequisites
 -------------
 
 To complete this guide, you must have the following:
 
- - An SSH key for running operator's commands against the cluster using ``deisctl``
- - An SSH key for authorizing yourself against Deis' builder
  - A domain to point to the cluster
  - The ability to provision at least 3 DigitalOcean Droplets that are 2GB or greater
 
@@ -24,21 +21,21 @@ In order to provision the cluster, we will need to install a couple of administr
 `Deis Control Utility`_, which will assist us with installing, configuring and managing the Deis
 platform.
 
+Check System Requirements
+-------------------------
+
+Please refer to :ref:`system-requirements` for resource considerations when choosing a droplet
+size to run Deis.
+
+Generate SSH Key
+----------------
+
+Please refer to :ref:`generate_ssh_key` for generating a new SSH key.
+
 Generate a New Discovery URL
 ----------------------------
 
-To get started with provisioning the Droplets, we will need to generate a new Discovery URL.
-Discovery URLs help connect `etcd`_ instances together by storing a list of peer addresses and
-metadata under a unique address. You can generate a new discovery URL for use in your platform by
-running the following from the root of the repository:
-
-.. code-block:: console
-
-    $ make discovery-url
-
-This will write a new discovery URL to the user-data file. This file is used by DigitalOcean's v2
-metadata API to create and customize each machine in our cluster to our liking. Some convenience
-scripts are supplied in this user-data file, so it is mandatory for provisioning Deis.
+Please refer to :ref:`generate_discovery_url` for generating a new Discovery URL.
 
 Create CoreOS Droplets
 ----------------------
@@ -48,7 +45,6 @@ by supplying a script that does all the heavy lifting for you. If you want to pr
 however, start by uploading the SSH key you wish to use to log into each of these servers. After
 that, create at least three Droplets with the following specifications:
 
- - At least 2GB -- more is recommended
  - All Droplets deployed in the same region
  - Region must have private networking enabled
  - Region must have User Data enabled. Supply the user-data file here
@@ -56,7 +52,7 @@ that, create at least three Droplets with the following specifications:
  - Select your SSH key from the list
 
 If private networking is not available in your region, swap out ``$private_ipv4`` with
-``$public_ipv4`` in the user-data file. 
+``$public_ipv4`` in the user-data file.
 
 If you want to use the script:
 
@@ -124,6 +120,19 @@ For convenience, you can also set up DNS records for each node:
 If you need help using the DNS control panel, check out `this tutorial`_ on DigitalOcean's
 community site.
 
+Apply Security Group Settings
+-----------------------------
+
+Because DigitalOcean does not have a security group feature, we'll need to add some custom
+``iptables`` rules so our components are not accessible from the outside world. To do this, there
+is a script in ``contrib/`` which will help us with that. To run it, use:
+
+.. code-block:: console
+
+    $ for i in 1 2 3; do ssh core@deis-$i.example.com 'bash -s' < contrib/util/custom-firewall.sh; done
+
+Our components should now be locked down from external sources.
+
 Install Deis Platform
 ---------------------
 
@@ -131,9 +140,7 @@ Now that you've finished provisioning a cluster, please refer to :ref:`install_d
 start installing the platform.
 
 
-.. _`Community site`: https://www.digitalocean.com/community/tutorials/how-to-set-up-a-deis-cluster-on-digitalocean
 .. _`docl`: https://github.com/nathansamson/docl#readme
 .. _`Deis Control Utility`: https://github.com/deis/deis/tree/master/deisctl#readme
 .. _`DNS control panel`: https://cloud.digitalocean.com/domains
-.. _`etcd`: https://github.com/coreos/etcd
 .. _`this tutorial`: https://www.digitalocean.com/community/tutorials/how-to-set-up-a-host-name-with-digitalocean
