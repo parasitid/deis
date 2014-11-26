@@ -103,6 +103,12 @@ Make sure it meets the following requirements:
  #. You can push Docker images from your workstation
  #. Hosts in the cluster can pull images with the same URL
 
+.. note::
+
+    If the development registry is insecure and has an IP address in a range other than ``10.0.0.0/8``,
+    ``172.16.0.0/12``, or ``192.168.0.0/16``, you'll have to modify ``contrib/coreos/user-data.example``
+    and whitelist your development registry so the daemons can pull your custom components.
+
 Development Workflow
 --------------------
 
@@ -180,7 +186,7 @@ Please read :ref:`standards`. It contains a checklist of things you should do
 when proposing a change to Deis.
 
 .. _`easy-fix`: https://github.com/deis/deis/issues?labels=easy-fix&state=open
-.. _`deisctl`: https://github.com/deis/deis/deisctl
+.. _`deisctl`: https://github.com/deis/deis/tree/master/deisctl
 .. _`fork the Deis repository`: https://github.com/deis/deis/fork
 .. _`running the tests`: https://github.com/deis/deis/tree/master/tests#readme
 .. _`pull request`: https://github.com/deis/deis/pulls

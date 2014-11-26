@@ -28,13 +28,13 @@ Please install `Vagrant`_ v1.6.5+ and `VirtualBox`_.
 Generate SSH Key
 ----------------
 
-Please refer to :ref:`generate_ssh_key` for generating a new SSH key.
+.. include:: ../_includes/_generate-ssh-key.rst
 
 
 Generate a New Discovery URL
 ----------------------------
 
-Please refer to :ref:`generate_discovery_url` for generating a new Discovery URL.
+.. include:: ../_includes/_generate-discovery-url.rst
 
 
 Boot CoreOS
@@ -60,8 +60,13 @@ Configure DNS
 
 For convenience, we have set up a few DNS records for users running on Vagrant.
 ``local3.deisapp.com`` is set up for 3-node clusters and ``local5.deisapp.com`` is set up for
-5-node clusters. If you want to set up your own DNS records, see :ref:`configure-dns` for more
-information.
+5-node clusters.
+
+Since ``local3.deisapp.com`` is your cluster domain, use ``local3.deisapp.com`` anywhere you see
+``example.com`` in the documentation.
+
+It is not necessary to configure DNS for Vagrant clusters, but it is possible - if you want to set up
+your own DNS records, see :ref:`configure-dns` for more information.
 
 
 Install Deis Platform

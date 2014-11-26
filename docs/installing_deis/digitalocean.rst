@@ -18,7 +18,7 @@ Prerequisites
 To complete this guide, you must have the following:
 
  - A domain to point to the cluster
- - The ability to provision at least 3 DigitalOcean Droplets that are 2GB or greater
+ - The ability to provision at least 3 DigitalOcean Droplets that are 4GB or greater
 
 In order to provision the cluster, we will need to install a couple of administrative tools.
 `docl`_ is a convenience tool to help provision DigitalOcean Droplets. We will also require the
@@ -31,15 +31,18 @@ Check System Requirements
 Please refer to :ref:`system-requirements` for resource considerations when choosing a droplet
 size to run Deis.
 
+
 Generate SSH Key
 ----------------
 
-Please refer to :ref:`generate_ssh_key` for generating a new SSH key.
+.. include:: ../_includes/_generate-ssh-key.rst
+
 
 Generate a New Discovery URL
 ----------------------------
 
-Please refer to :ref:`generate_discovery_url` for generating a new Discovery URL.
+.. include:: ../_includes/_generate-discovery-url.rst
+
 
 Create CoreOS Droplets
 ----------------------
@@ -75,7 +78,7 @@ If you want to use the script:
     London 1 (lon1)
     New York 3 (nyc3)
     Singapore 1 (sgp1)
-    $ ./contrib/digitalocean/provision-do-cluster nyc3 12345 4GB
+    $ ./contrib/digitalocean/provision-do-cluster.sh nyc3 12345 4GB
 
 Which will provision 3 CoreOS nodes for use.
 

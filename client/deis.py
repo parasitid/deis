@@ -24,7 +24,7 @@ Subcommands, use ``deis help [subcommand]`` to learn more::
   keys          manage ssh keys used for `git push` deployments
   perms         manage permissions for applications
 
-Developer shortcut commands::
+Shortcut commands, use ``deis shortcuts`` to see all::
 
   create        create a new application
   scale         scale processes by type (web=2, worker=1)
@@ -33,6 +33,7 @@ Developer shortcut commands::
   logs          view aggregated log info for the app
   run           run a command in an ephemeral app container
   destroy       destroy an application
+  pull          imports an image and deploys as a new release
 
 Use ``git push deis master`` to deploy to an application.
 
@@ -67,7 +68,7 @@ from docopt import DocoptExit
 import requests
 from termcolor import colored
 
-__version__ = '1.0.1+git'
+__version__ = '1.1.0-dev'
 
 
 locale.setlocale(locale.LC_ALL, '')
